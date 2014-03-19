@@ -1,0 +1,10 @@
+Package: com.chewmieser.fancier
+Name: Fancier
+Depends: mobilesubstrate, applist (>= 1.5.0), firmware (>=7.0), preferenceloader
+Architecture: iphoneos-arm
+Description: iOS7 Live Theming Platform
+Maintainer: Steven Rolfe
+Author: Steven Rolfe
+Section: Tweaks
+Version: 0.0.3-3
+Installed-Size: 552

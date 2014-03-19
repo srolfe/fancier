@@ -1,0 +1,10 @@
+{
+	entry = {
+		bundle = FancierSettings;
+		cell = PSLinkCell;
+		detail = "FancierSettingsListController";
+		icon = "FancierSettings.png";
+		isController = 1;
+		label = Fancier;
+	};
+}

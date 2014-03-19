@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>bundle</key>
+		<string>AppList</string>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>icon</key>
+		<string>/Applications/Preferences.app/Settings.png</string>
+		<key>isController</key>
+		<string>1</string>
+		<key>label</key>
+		<string>AppList Sample</string>
+		<key>ALSettingsPath</key>
+		<string>/var/mobile/Library/Preferences/com.rpetrich.applist.sample.plist</string>
+		<key>ALSettingsKeyPrefix</key>
+		<string>Settings-</string>
+		<key>ALChangeNotification</key>
+		<string>com.rpetrich.applist.sample.notification</string>
+		<key>ALAllowsSelection</key>
+		<string>1</string>
+		<key>ALSectionDescriptors</key>
+		<array>
+			<dict>
+				<key>items</key>
+				<array>
+					<dict>
+						<key>text</key>
+						<string>Google</string>
+						<key>image</key>
+						<string>/Applications/Preferences.app/Safari.png</string>
+						<key>action</key>
+						<string>launchURL</string>
+						<key>url</key>
+						<string>http://www.google.com/</string>
+					</dict>
+				</array>
+				<key>footer-title</key>
+				<string>Table cell to open Safari to Google</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>System Applications</string>
+				<key>predicate</key>
+				<string>isSystemApplication = TRUE</string>
+				<key>cell-class-name</key>
+				<string>ALSwitchCell</string>
+				<key>icon-size</key>
+				<string>29</string>
+				<key>suppress-hidden-apps</key>
+				<string>1</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>User Applications</string>
+				<key>predicate</key>
+				<string>isSystemApplication = FALSE</string>
+				<key>cell-class-name</key>
+				<string>ALSwitchCell</string>
+				<key>icon-size</key>
+				<string>29</string>
+				<key>suppress-hidden-apps</key>
+				<string>1</string>
+				<key>footer-title</key>
+				<string>© 2010-2012 Ryan Petrich</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

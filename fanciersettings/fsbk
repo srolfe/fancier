@@ -1,0 +1,138 @@
+#import "common.h"
+#import <objc/runtime.h>
+
+// Main screen controller
+@interface FancierSettingsListController: PSListController {
+}
+@end
+
+@implementation FancierSettingsListController
+	- (id)specifiers {
+		if(_specifiers == nil) {
+			_specifiers = [[self loadSpecifiersFromPlistName:@"FancierSettings" target:self] retain];
+		}
+		return _specifiers;
+	}
+@end
+
+// Main screen header
+@interface HeaderCell : PSTableCell{
+	UIImageView *_background;
+}
+@end
+
+@implementation HeaderCell
+	- (id)initWithSpecifier:(PSSpecifier *)specifier{
+	    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerCell" specifier:specifier];
+	    if (self) {
+			UIImage *bkIm = [[UIImage alloc] initWithContentsOfFile:[[NSBundle bundleWithPath:@"/Library/PreferenceBundles/FancierSettings.bundle"] pathForResource:@"fancierHeader" ofType:@"png"]];
+			_background = [[UIImageView alloc] initWithImage:bkIm];
+			[self addSubview:_background];
+	    }
+	
+	    return self;
+	}
+
+	- (float)preferredHeightForWidth:(float)arg1{
+	    return 100.f;
+	}
+@end
+	
+@interface GlobalSettingsController : PSListController
+@end
+	
+@implementation GlobalSettingsController
+	- (id)specifiers {
+		if(_specifiers == nil) {
+			_specifiers = [[self loadSpecifiersFromPlistName:@"FancierGlobalSettings" target:self] retain];
+		}
+		return _specifiers;
+	}
+@end
+	
+@interface NavBarCell : PSTableCell{
+	UINavigationBar *_navbar;
+}
+@end
+
+@implementation NavBarCell
+	- (id)initWithSpecifier:(PSSpecifier *)specifier{
+	    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"navCell" specifier:specifier];
+	    if (self) {
+			CGRect frame=[self frame];
+			UINavigationItem *prevItem = [[UINavigationItem alloc] initWithTitle:@"Fancy"];
+			UINavigationItem *navItem = [[UINavigationItem alloc] initWithTitle:@"Fancier"];
+			
+			_navbar = [[UINavigationBar alloc] init];
+			
+			[navItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStylePlain target:nil action:nil] animated:NO];
+			[navItem setHidesBackButton:NO animated:NO];
+			[_navbar setFrame:CGRectMake(frame.origin.x,frame.origin.y+22,frame.size.width,frame.size.height)];
+			
+			[_navbar setItems:[NSArray arrayWithObjects:prevItem,navItem,nil] animated:NO];
+			[self addSubview:_navbar];
+		}
+		
+		return self;
+	}
+	
+	- (float)preferredHeightForWidth:(float)arg1{
+	    return 66.f;
+	}
+@end
+	
+@interface TabBarCell : PSTableCell{
+	UITabBar *_tabbar;
+}
+@end
+
+@implementation TabBarCell
+	- (id)initWithSpecifier:(PSSpecifier *)specifier{
+	    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tabCell" specifier:specifier];
+	    if (self) {
+			CGRect frame=[self frame];
+			_tabbar = [[UITabBar alloc] init];
+			[_tabbar setFrame:CGRectMake(frame.origin.x,frame.origin.y+22,frame.size.width,frame.size.height)];
+			[_tabbar setItems:[NSArray arrayWithObjects:
+				[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:nil],
+				[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:nil],
+				[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:nil],
+				[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:nil],
+				nil
+			] animated:NO];
+			
+			[self addSubview:_tabbar];
+		}
+	
+		return self;
+	}
+
+	- (float)preferredHeightForWidth:(float)arg1{
+	    return 66.f;
+	}
+@end
+
+@interface KeyBoardCell : PSTableCell{
+	UIKeyboard *_keyboard;
+}
+@end
+
+@implementation KeyBoardCell
+	- (id)initWithSpecifier:(PSSpecifier *)specifier{
+	    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"keyCell" specifier:specifier];
+	    if (self) {
+			CGRect frame=[self frame];
+			
+			_keyboard = [[UIKeyboard alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y+22,frame.size.width,frame.size.height)];
+			[_keyboard _setRenderConfig:[objc_getClass("UIKBRenderConfig") defaultConfig]];
+			[self addSubview:_keyboard];
+			[_keyboard activate];
+		}
+
+		return self;
+	}
+
+	- (float)preferredHeightForWidth:(float)arg1{
+	    return 238.f;
+	}
+@end
